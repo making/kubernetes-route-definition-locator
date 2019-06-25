@@ -1,0 +1,59 @@
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: routedefinitions.gateway.cloud.ik.am
+spec:
+  group: gateway.cloud.ik.am
+  version: v1beta1
+  scope: Namespaced
+  names:
+    plural: routedefinitions
+    singular: routedefinition
+    kind: RouteDefinition
+    shortNames:
+      - rd
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            serviceName:
+              type: string
+            portName:
+              type: string
+            route:
+              properties:
+                uri:
+                  type: string
+                predicates:
+                  type: array
+                filters:
+                  type: array
+              required:
+                - predicates
+            scheme:
+              enum:
+                - http
+                - https
+              type: string
+            useClusterIp:
+              type: boolean
+          required:
+            - route
+  additionalPrinterColumns:
+    - JSONPath: .spec.serviceName
+      name: ServiceName
+      type: string
+    - JSONPath: .spec.scheme
+      name: Scheme
+      type: string
+    - JSONPath: .spec.portName
+      name: PortName
+      type: string
+    - JSONPath: .spec.useClusterIp
+      name: UseClusterIp
+      type: boolean
+    - JSONPath: .spec.route
+      name: Route
+      type: string
