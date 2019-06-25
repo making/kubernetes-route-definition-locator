@@ -1,6 +1,6 @@
 # Kubernetes Route Definition Locator for Spring Cloud Gateway
 
-This project provides a Kubernetes native way to define `RouteDefinition`s for Spring Cloud Gateway using CRD.
+This project provides a `RouteDefinitionLocator` implementation for Spring Cloud Gateway so that yuo can define `RouteDefinition`s in a Kubernetes native way using CRD.
 
 ## How to install `RouteDefinition` CRD
 
