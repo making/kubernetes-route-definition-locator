@@ -5,7 +5,7 @@ This project provides a Kubernetes native way to define `RouteDefinition`s for S
 ## How to install `RouteDefinition` CRD
 
 ```
-kubectl apply -f manifest/routedefinition-crd.yml
+kubectl apply -f https://raw.githubusercontent.com/making/kubernetes-route-definition-locator/master/manifest/routedefinition-crd.yml
 ```
 
 ## How to configure
