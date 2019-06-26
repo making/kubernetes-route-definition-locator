@@ -59,6 +59,55 @@ If you are not familiar with Spring Cloud Gateway, start from the following reso
 
 Deploy your gateway on your k8s and configure route definitions using CRD.
 
+Your gateway needs a service account that has a role like following:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: spring-cloud-gateway
+  namespace: your-ns
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: spring-cloud-gateway
+rules:
+- apiGroups:
+  - gateway.cloud.ik.am
+  resources:
+  - routedefinitions
+  verbs:
+  - get
+  - watch
+  - list
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+- apiGroups:
+  - "" # "" indicates the core API group
+  resources:
+  - services
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: gateway-clusterrole-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: spring-cloud-gateway
+subjects:
+- kind: ServiceAccount
+  name: spring-cloud-gateway
+  namespace: your-ns
+```
+
 
 ## Sample CRDs
 
