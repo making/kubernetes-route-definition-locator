@@ -20,6 +20,8 @@ Add the dependency to your Spring Cloud Gateway project:
 </dependency>
 ```
 
+or you can also get it from [jitpack](https://jitpack.io/#making/kubernetes-route-definition-locator).
+
 Add a configuration bellow to your Spring Cloud Gateway project:
 
 ```java
