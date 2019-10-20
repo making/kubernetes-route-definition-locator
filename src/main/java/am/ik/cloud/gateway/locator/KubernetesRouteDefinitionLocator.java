@@ -94,7 +94,7 @@ public class KubernetesRouteDefinitionLocator implements RouteDefinitionLocator,
 				(n, ns) -> kubernetesClient.services().inNamespace(ns).withName(n).get());
 	}
 
-	@Scheduled(fixedRate = 60_000, initialDelay = 15_000)
+	@Scheduled(fixedRate = 30_000, initialDelay = 15_000)
 	public synchronized void reconcile() {
 		log.debug("Reconcile");
 		this.routeDefinitionResources().list().getItems().forEach(resource -> {
