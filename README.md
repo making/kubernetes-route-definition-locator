@@ -183,6 +183,7 @@ spec:
   # portName: xxxxx (specify the port name if the service has multiple ports)
   # scheme: https (by default, http is used)
   route:
+    # order: -1 (by default, 0 is used. Lower value is interpreted as higher priority. The same combination of predicates must have different order.)
     predicates:
     - Host=hello-pks.example.com
     filters:

@@ -114,6 +114,9 @@ public class RouteDefinitionSpec implements KubernetesResource {
 		else {
 			uri = URI.create(this.route.uri);
 		}
+		if (this.route.order != null) {
+			routeDefinition.setOrder(this.route.order);
+		}
 		routeDefinition.setId(id);
 		routeDefinition.setUri(uri);
 		routeDefinition.setFilters(this.route.filters.stream()
@@ -169,12 +172,21 @@ public class RouteDefinitionSpec implements KubernetesResource {
 	}
 
 	public static class Route {
+		private Integer order;
 
 		private String uri;
 
 		private List<Object> predicates;
 
 		private List<Object> filters;
+
+		public Integer getOrder() {
+			return order;
+		}
+
+		public void setOrder(Integer order) {
+			this.order = order;
+		}
 
 		public String getUri() {
 			return uri;
@@ -203,6 +215,7 @@ public class RouteDefinitionSpec implements KubernetesResource {
 		@Override
 		public String toString() {
 			return new StringJoiner(", ", Route.class.getSimpleName() + "[", "]")
+					.add("order=" + order) //
 					.add("uri='" + uri + "'") //
 					.add("predicates=" + predicates) //
 					.add("filters=" + filters) //

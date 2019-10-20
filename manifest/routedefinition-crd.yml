@@ -24,6 +24,8 @@ spec:
               type: string
             route:
               properties:
+                order:
+                  type: integer
                 uri:
                   type: string
                 predicates:
